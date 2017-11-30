@@ -49,3 +49,15 @@ ggplot(data=mpg, aes(x=cty, y=hwy,size=class,color=class)) + geom_point(alpha = 
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+## Multiple
+```{r multiple, echo=FALSE}
+ggplot(data=mpg, aes(x=displ, y=hwy))+ 
+geom_point()+
+geom_smooth()+
+labs(title = "Relationship between engine sixe and MPG",
+     x= "Highway MPG",
+     y="Engine Displacement")+
+  theme_classic()
+```
