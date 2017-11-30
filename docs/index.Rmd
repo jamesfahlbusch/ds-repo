@@ -25,9 +25,10 @@ g <- ggplot(data = mpg, aes(x = displ,y = hwy))
 g + geom_point()
 
 ```
+
 ### I need color!
 ```{r color, echo=TRUE}
-
+g + geom_point(aes(color = class))
 ```
 
 
