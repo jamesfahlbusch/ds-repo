@@ -44,14 +44,14 @@ g + geom_point(aes(size = class))
 
 You can also embed plots, for example:
 
-```{r ctyhwy, echo=FALSE}
+```{r ctyhwy, echo=TRUE}
 ggplot(data=mpg, aes(x=cty, y=hwy,size=class,color=class)) + geom_point(alpha = 0.2)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 
-## Multiple
+### Multiple
 ```{r multiple, echo=FALSE}
 ggplot(data=mpg, aes(x=displ, y=hwy))+ 
 geom_point()+
@@ -61,3 +61,38 @@ labs(title = "Relationship between engine sixe and MPG",
      y="Engine Displacement")+
   theme_classic()
 ```
+
+
+## Data Wrangling with `dplyr`
+```{r dw, echo=TRUE}
+library(tidyverse)
+gapminder <- readr::read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv")
+
+head(gapminder)
+tail(gapminder)
+summary(gapminder)
+#check out the structure of your data
+str(gapminder)
+#column names
+names(gapminder)
+#dimensions of dataframe
+dim(gapminder) #[1]
+ncol(gapminder)
+nrow(gapminder)
+c(nrow(gapminder), ncol(gapminder))
+
+```
+### Using filters
+```{r dwf, echo=TRUE}
+#mean life expectancy in sweden
+mean(filter(gapminder, country == "Sweden")$lifeExp)
+
+```
+
+
+
+
+
+
+
+
