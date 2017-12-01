@@ -123,6 +123,22 @@ gapminder %>%
   group_by(country) %>% 
   summarize(maxGDP = max(gdpPercap))
   
+gapminder %>% 
+  group_by(country) %>% 
+  mutate(maxGDP = max(gdpPercap)) %>% 
+  filter(gdpPercap == max(gdpPercap))
+
+gapminder %>% 
+  group_by(year) %>% 
+  mutate(maxGDP = max(gdpPercap)) %>% 
+  filter(gdpPercap == max(gdpPercap)) %>% 
+  arrange(year)
+  
+gapminder %>% 
+  group_by(year) %>% 
+  mutate(minGDP = min(gdpPercap)) %>% 
+  filter(gdpPercap == min(gdpPercap)) %>% 
+  arrange(year)
 
 ```
 

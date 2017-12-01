@@ -449,6 +449,69 @@ gapminder %&gt;%
 ##     &lt;chr&gt;    &lt;dbl&gt;
 ## 1   Egypt 5581.181
 ## 2 Vietnam 2441.576</code></pre>
+<pre class="r"><code>gapminder %&gt;% 
+  group_by(country) %&gt;% 
+  mutate(maxGDP = max(gdpPercap)) %&gt;% 
+  filter(gdpPercap == max(gdpPercap))</code></pre>
+<pre><code>## # A tibble: 142 x 9
+## # Groups:   country [142]
+##        country  year       pop continent lifeExp  gdpPercap          gdp
+##          &lt;chr&gt; &lt;int&gt;     &lt;dbl&gt;     &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;
+##  1 Afghanistan  1982  12881816      Asia  39.854   978.0114  12598563401
+##  2     Albania  2007   3600523    Europe  76.423  5937.0295  21376411360
+##  3     Algeria  2007  33333216    Africa  72.301  6223.3675 207444851958
+##  4      Angola  1967   5247469    Africa  35.985  5522.7764  28980597822
+##  5   Argentina  2007  40301927  Americas  75.320 12779.3796 515033625357
+##  6   Australia  2007  20434176   Oceania  81.235 34435.3674 703658358894
+##  7     Austria  2007   8199783    Europe  79.829 36126.4927 296229400691
+##  8     Bahrain  2007    708573      Asia  75.635 29796.0483  21112675360
+##  9  Bangladesh  2007 150448339      Asia  64.062  1391.2538 209311822134
+## 10     Belgium  2007  10392226    Europe  79.441 33692.6051 350141166520
+## # ... with 132 more rows, and 2 more variables: index &lt;int&gt;, maxGDP &lt;dbl&gt;</code></pre>
+<pre class="r"><code>gapminder %&gt;% 
+  group_by(year) %&gt;% 
+  mutate(maxGDP = max(gdpPercap)) %&gt;% 
+  filter(gdpPercap == max(gdpPercap)) %&gt;% 
+  arrange(year)</code></pre>
+<pre><code>## # A tibble: 12 x 9
+## # Groups:   year [12]
+##         country  year      pop continent lifeExp gdpPercap          gdp
+##           &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+##  1       Kuwait  1952   160000      Asia  55.565 108382.35  17341176464
+##  2       Kuwait  1957   212846      Asia  58.033 113523.13  24162944745
+##  3       Kuwait  1962   358266      Asia  60.470  95458.11  34199395868
+##  4       Kuwait  1967   575003      Asia  64.624  80894.88  46514800559
+##  5       Kuwait  1972   841934      Asia  67.712 109347.87  92063687055
+##  6       Kuwait  1977  1140357      Asia  69.343  59265.48  67583801715
+##  7 Saudi Arabia  1982 11254672      Asia  63.012  33693.18 379205636077
+##  8       Norway  1987  4186147    Europe  75.890  31540.97 132035157036
+##  9       Kuwait  1992  1418095      Asia  75.190  34932.92  49538198606
+## 10       Norway  1997  4405672    Europe  78.320  41283.16 181880081160
+## 11       Norway  2002  4535591    Europe  79.050  44683.98 202668235988
+## 12       Norway  2007  4627926    Europe  80.196  49357.19 228421423675
+## # ... with 2 more variables: index &lt;int&gt;, maxGDP &lt;dbl&gt;</code></pre>
+<pre class="r"><code>gapminder %&gt;% 
+  group_by(year) %&gt;% 
+  mutate(minGDP = min(gdpPercap)) %&gt;% 
+  filter(gdpPercap == min(gdpPercap)) %&gt;% 
+  arrange(year)</code></pre>
+<pre><code>## # A tibble: 12 x 9
+## # Groups:   year [12]
+##            country  year      pop continent lifeExp gdpPercap         gdp
+##              &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+##  1         Lesotho  1952   748747    Africa  42.138  298.8462   223760205
+##  2         Lesotho  1957   813338    Africa  45.047  335.9971   273279222
+##  3         Burundi  1962  2961915    Africa  42.045  355.2032  1052081767
+##  4         Myanmar  1967 25870271      Asia  49.379  349.0000  9028724579
+##  5         Myanmar  1972 28466390      Asia  53.070  357.0000 10162501230
+##  6         Myanmar  1977 31528087      Asia  56.059  371.0000 11696920277
+##  7         Myanmar  1982 34680442      Asia  58.056  424.0000 14704507408
+##  8         Myanmar  1987 38028578      Asia  58.339  385.0000 14641002530
+##  9         Myanmar  1992 40546538      Asia  59.320  347.0000 14069648686
+## 10 Congo Dem. Rep.  1997 47798986    Africa  42.587  312.1884 14922290060
+## 11 Congo Dem. Rep.  2002 55379852    Africa  44.966  241.1659 13355730548
+## 12 Congo Dem. Rep.  2007 64606759    Africa  46.462  277.5519 17931726045
+## # ... with 2 more variables: index &lt;int&gt;, minGDP &lt;dbl&gt;</code></pre>
 </div>
 </div>
 
