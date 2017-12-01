@@ -141,10 +141,90 @@ gapminder %>%
   arrange(year)
 
 ```
+## Joining Datasets
+```{r co2}
+co2 <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/co2.csv")
+co2 %>% head()
+co2 %>% str()
+
+gap_2007 <-  gapminder %>% 
+  filter(year==2007)
+
+# left join 
+lj <-  left_join(gap_2007, co2, by = "country")
+lj %>%  dim()
+# lj %>% View()
+
+# right join
+rj <-  right_join(gap_2007,co2)
+rj %>%  dim()
+# rj %>% View()
+```
 
 
+## TIDYR BASICS
+
+```{r tidy}
+# making wide data narrow and vice versa
+
+AirPassengers
+mpg
+
+gap_wide <- readr::read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder_wide.csv")
+
+## use gather
+#turn gap_wide into long format
+gap_long <- gap_wide %>%
+  gather(key = obstype_year,
+         value = obs_values,
+         dplyr::starts_with("pop"),
+         dplyr::starts_with("lifeExp"),
+         dplyr::starts_with("gdpPercap"))
+
+## use separate 
+gap_long <- gap_wide %>%
+  gather(key = obstype_year,
+         value = obs_values,
+         -continent, -country) %>% 
+  separate(obstype_year,
+           into = c("obs_type", "year"),
+           sep = "_",
+           convert = TRUE)
 
 
+```
 
+### Plot long form data
+```{r plotLF}
+
+life_df <- gap_long %>% 
+  filter(obs_type == "lifeExp", 
+         continent == "Americas")
+
+ggplot(life_df,aes(x= year, y = obs_values, color = country)) + 
+  geom_line()
+
+
+meanLE_df <- gap_long %>% 
+  filter(obs_type == "lifeExp",
+         year >= 1982,
+         year <= 2007) %>% 
+  group_by(continent, year) %>% 
+  summarize(mean = mean(obs_values))
+
+ggplot(meanLE_df,aes(x= year, y = mean, color = continent)) + 
+  geom_line()
+
+```
+
+
+```{r spread}
+
+gap_normal <- gap_long %>% 
+  spread(key = obs_type,
+         value = obs_values)
+
+
+```
 
 
